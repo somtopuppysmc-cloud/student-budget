@@ -1,2 +1,4 @@
 Flask
 cs50
+gunicorn
+psycopg2-binary

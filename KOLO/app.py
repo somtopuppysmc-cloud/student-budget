@@ -4,9 +4,10 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date, datetime
 import math
+import os
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "ilovebutterfly" 
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 
 category_weights = {
@@ -22,7 +23,15 @@ category_weights = {
 }
 
 
-db = SQL("sqlite:///kolo.db")
+database_url = os.environ.get("DATABASE_URL")
+database_url = database_url.replace(
+    "postgresql://",
+    "postgresql+psycopg2://",
+    1
+)
+
+db = SQL(database_url)
+
 @app.route("/")
 def home():
     return render_template("index.html")
