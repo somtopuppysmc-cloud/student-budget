@@ -1,0 +1,88 @@
+{% extends "layout2.html" %}
+
+{% block body %}
+<div class="setup-form">
+<form action="/setup" method="POST">
+  <h4>Let's setup your budget</h4>
+  <p>Tell us a little about your finances so we can create a plan that works for you </p>
+  <hr>
+  <div class="setup-income">
+  <h5>01. Your income</h5>
+  <p>Estimated monthly income (₦)</p>
+  <input type="number" autocomplete="off" placeholder="eg. 130,000" name="monthly_income" id="monthly_income" required>
+  </div>
+  <hr>
+
+    <div class="setup-expense">
+    <h5>02. Your expenses</h5>
+    <p>Select all that apply to you</p>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="food and groceries">
+        <span>Food and groceries</span>
+    </label>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="transport">
+        <span>Transportation</span>
+    </label>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="utilities">
+        <span>Utilities</span>
+    </label>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="internet and data">
+        <span>Internet and data</span>
+    </label>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="education">
+        <span>Education</span>
+    </label>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="healthcare">
+        <span>Healthcare</span>
+    </label>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="personal_care">
+        <span>Personal care</span>
+    </label>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="entertainment">
+        <span>Entertainment</span>
+    </label>
+
+    <label class="expense-choice">
+        <input type="checkbox" name="categories" value="other">
+        <span>other</span>
+    </label>
+</div>
+    <hr>
+    <div>
+        <h5>03. Your savings</h5>
+        <p>Would you like to save?</p>
+        <label class="choice">
+        <input type="radio" name="savings_choice" value="yes" required>
+          Yes, I want to save
+        </label>
+
+        <label class="choice">
+         <input type="radio" name="savings_choice" value="no">
+           No, not right now
+         </label>
+         </div>
+         <div id="savings_section" style="display: none;">
+            <label for="savings_amount">How much do you want to save monthly?</label>
+            <input type="number" id="savings_amount" name="savings_amount" min="1">
+         </div>
+         <button type="submit">Submit</button>
+    </div>
+    
+</form>
+<script src="{{url_for('static', filename = 'setup.js')}}"></script>
+{% endblock %}

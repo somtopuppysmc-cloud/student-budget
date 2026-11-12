@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <main class="add-expense-page">
+        <a class="expense-back-link" href="{{ url_for('expenses') }}">← Back to expenses</a>
+        <section class="add-expense-card">
+            <p class="expenses-eyebrow">Stay on top of your budget</p>
+            <h1>Add an expense</h1>
+            <p class="add-expense-intro">Record a purchase to keep your budget up to date.</p>
+            <form class="add-expense-form" method="POST" action="{{ url_for('add_expense') }}">
+                <div class="expense-form-field">
+                    <label for="amount">Amount</label>
+                    <div class="expense-amount-input">
+                        <span aria-hidden="true">&#8358;</span>
+                        <input type="number" id="amount" name="amount" min="1" step="1" required>
+                    </div>
+                </div>
+                <div class="expense-form-field">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="expense-form-field">
+                    <label for="description">Description <span>(optional)</span></label>
+                    <input type="text" id="description" name="description" autocomplete="off" placeholder="e.g. Groceries, Gas, Rent">
+                </div>
+                <button class="expense-button" type="submit">Add expense</button>
+            </form>
+        </section>
+    </main>
+        </form>
+{% endblock %}

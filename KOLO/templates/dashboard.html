@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+    <main class="dashboard-page">
+        <header class="dashboard-header">
+            <div>
+                <p class="dashboard-eyebrow">Your money, in focus</p>
+                <h1>Dashboard</h1>
+                <p>Welcome back, {{ user.full_name }}.</p>
+            </div>
+            <p class="dashboard-month">{{ budget.budget_month }}</p>
+        </header>
+        <section class="dashboard-summary" aria-label="Monthly budget summary">
+            <div class="dashboard-summary-item">
+                <p>Monthly income</p>
+                <h2>&#8358;{{ budget.monthly_income }}</h2>
+            </div>
+            <div class="dashboard-summary-item dashboard-savings">
+                <p>Savings amount</p>
+                <h2>&#8358;{{ budget.savings_amount }}</h2>
+            </div>
+            <div class="dashboard-summary-item dashboard-available">
+                <p>Money available</p>
+                <h2>&#8358;{{ remaining_money }}</h2>
+            </div>
+        </section>
+        <section class="dashboard-budget">
+            <div class="dashboard-section-heading">
+                <p class="dashboard-eyebrow">Plan your spending</p>
+                <h2>My budget</h2>
+            </div>
+            <div class="dashboard-categories">
+        {% for category in categories %}
+                <article class="dashboard-category">
+                    <h3>{{ category.category }}</h3>
+                    <div class="dashboard-category-row">
+                        <p>Allocated</p>
+                        <p>&#8358;{{ category.allocated_amount }}</p>
+                    </div>
+                    <div class="dashboard-category-row">
+                        <p>Spent</p>
+                        <p>&#8358;{{ category.spent }}</p>
+                    </div>
+                    <div class="dashboard-category-row dashboard-remaining">
+                        <p>Remaining</p>
+                        <p>&#8358;{{ category.remaining }}</p>
+                    </div>
+                </article>
+        {% else %}
+                <p class="dashboard-empty">No budget categories found.</p>
+        {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}

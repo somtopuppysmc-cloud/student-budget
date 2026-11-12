@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <main class="budget-page">
+        <header class="budget-page-header">
+            <div>
+                <p class="budget-eyebrow">Make every kobo count</p>
+                <h1>My Budget</h1>
+                <p>Plan your monthly income and make room for what matters.</p>
+            </div>
+        </header>
+
+        <section class="budget-summary" aria-label="Monthly budget summary">
+            <article class="budget-summary-card">
+                <p>Monthly income</p>
+                <h2>&#8358;{{ budget.monthly_income }}</h2>
+            </article>
+            <article class="budget-summary-card budget-summary-savings">
+                <p>Savings amount</p>
+                <h2>&#8358;{{ budget.savings_amount }}</h2>
+            </article>
+            <article class="budget-summary-card budget-summary-available">
+                <p>Available to budget</p>
+                <h2>&#8358;{{ budget.monthly_income - budget.savings_amount }}</h2>
+            </article>
+        </section>
+        <section class="budget-section budget-edit-section" aria-labelledby="budget-edit-title">
+            <div class="budget-section-heading">
+                <p class="budget-eyebrow">Update your plan</p>
+                <h2 id="budget-edit-title">Edit budget</h2>
+            </div>
+            <form class="budget-edit-form" action="{{ url_for('update_budget') }}" method="POST">
+                <div class="budget-edit-grid">
+                    <div class="budget-edit-field">
+                        <label for="monthly_income">Monthly income (₦)</label>
+                        <input
+                            type="number"
+                            name="monthly_income"
+                            id="monthly_income"
+                            value="{{ budget.monthly_income }}"
+                            min="1"
+                            required
+                        >
+                    </div>
+                    <div class="budget-edit-field">
+                        <label for="savings_amount">Savings amount (₦)</label>
+                        <input
+                            type="number"
+                            name="savings_amount"
+                            id="savings_amount"
+                            value="{{ budget.savings_amount }}"
+                            min="0"
+                            required
+                        >
+                    </div>
+                </div>
+                <button class="expense-button" type="submit">Save changes</button>
+            </form>
+        </section>
+        <section class="budget-section" aria-labelledby="budget-categories-title">
+            <div class="budget-section-heading">
+                <p class="budget-eyebrow">Your plan</p>
+                <h2 id="budget-categories-title">Budget categories</h2>
+            </div>
+            <div class="budget-category-grid">
+        {% for category in categories %}
+                <article class="budget-category-card">
+                    <div class="budget-category-heading">
+                        <h3>{{ category.category|replace("_", " ")|title }}</h3>
+                        <span class="budget-category-percentage">{{ "%.0f"|format(category.percentage) }}%</span>
+                    </div>
+                    <p>Monthly allocation</p>
+                    <h4>&#8358;{{ "{:,.0f}".format(category.allocated_amount) }}</h4>
+                </article>
+        {% else %}
+                <p class="budget-empty">No budget categories found.</p>
+        {% endfor %}
+            </div>
+        </section>
+
+        <section class="budget-section allocation-section" aria-labelledby="allocation-title">
+            <div class="budget-section-heading">
+                <p class="budget-eyebrow">Make it yours</p>
+                <h2 id="allocation-title">Edit allocations</h2>
+                <p>Adjust your percentages; the total needs to add up to 100%.</p>
+            </div>
+            <form class="allocation-form" action="{{ url_for('update_allocations') }}" method="POST">
+                <div class="allocation-grid">
+
+    {% for category in categories %}
+                    <div class="allocation-card">
+                        <h3>{{ category.category|replace("_", " ")|title }}</h3>
+
+                        <label for="percentage_{{ category.id }}">Allocation (%)</label>
+
+                        <input
+                            type="number"
+                            class="allocation-input"
+                            name="percentage_{{ category.id }}"
+                            id="percentage_{{ category.id }}"
+                            value="{{ "%.0f"|format(category.percentage) }}"
+                            min="0"
+                            max="100"
+                            step="1"
+                            required
+                        >
+
+                        <p>Currently allocated: &#8358;{{ "{:,.0f}".format(category.allocated_amount) }}</p>
+                    </div>
+    {% else %}
+                    <p class="budget-empty">No budget categories found.</p>
+    {% endfor %}
+                </div>
+                <div class="allocation-total">
+                    <div>
+                        <p>Total allocation</p>
+                        <h3 id="total-percentage">0%</h3>
+                    </div>
+                    <p id="allocation-message" aria-live="polite"></p>
+                </div>
+                <button class="expense-button" type="submit">Save changes</button>
+            </form>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='allocation.js') }}"></script>
+{% endblock %}

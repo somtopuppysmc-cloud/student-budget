@@ -1,0 +1,158 @@
+{% extends "layout2.html" %}
+
+{% block body %}
+      <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">
+          <span>SMARTER STUDENT FINANCES</span>
+          </div>
+          <div class="hero-title">
+          <h1>Your money. Your plans. Your future.</h1>
+          </div>
+          <div class="hero-description">
+          <p>Take control of your finances with a budgeting tool designed to help students spend wisely, save consistently and plan confidently</p>
+          </div>
+          <div class="hero-buttons"> 
+          <a class="btn-primary" href="{{ url_for('register') }}">Get Started</a>
+          <a class="btn-secondary" href="#">Learn More</a>
+          </div>
+        </div>
+        <div class="hero-preview">
+            <div class="budget-card">
+                <div class="budget-header">
+                    <div>
+                        <p class="budget-label">Monthly income</p>
+                        <h3 class="budget-amount">₦130,000</h3>
+                    </div>
+                    <span class="budget-pill">+₦20,000</span>
+                </div>
+
+                <div class="budget-summaries">
+                    <div class="budget-stat">
+                        <p>Savings</p>
+                        <h4>₦20,000</h4>
+                    </div>
+                    <div class="budget-stat-highlight">
+                        <p>Available budget</p>
+                        <h4>₦110,000</h4>
+                    </div>
+                </div>
+                
+                <div class="budget-progress-list">
+
+                    <p>Budget breakdown</p>
+                    <div class="budget-progress-item">
+                        <div class="budget-progress-label">
+                            <span>Food</span>
+                            <span>₦38,000</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar food-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="budget-progress-item">
+                        <div class="budget-progress-label">
+                            <span>Transport</span>
+                            <span>₦22,000</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar transport-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="budget-progress-item">
+                        <div class="budget-progress-label">
+                            <span>Utilities</span>
+                            <span>₦18,000</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar utilities-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="budget-progress-item">
+                        <div class="budget-progress-label">
+                            <span>Other</span>
+                            <span>₦32,000</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar other-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+      </section>  
+      <hr>
+      <section class="how-it-works">
+        <div class="explained-label"><span>HOW IT WORKS</span></div>
+        <h2>A better way to manage your money</h2>
+        <p>Take guesswork out of budgeting. Build better financial habits with a plan that works around your student life</p>
+        <div class="explained">
+            <div class="explained-income">
+                <h3>01. Set your Income</h3>
+                <p>Enter your monthly income and decide how much you want to save.</p>
+            </div>
+            <div class="explained-budget">
+                <h3>02. Plan your budget</h3>
+                <p>Allocate your money across the categories that matter to you.</p>
+            </div>
+           <div class="explained-progress">
+                <h3>03. Track your progress</h3>
+                <p>Monitor your spending, savings and financial goals.</p>
+            </div>
+        </div>
+      </section>
+      <hr>
+      <section class="features">
+               <div class="features-label"><span>BUILT FOR STUDENT LIFE</span></div>
+        <h2>More than just a budget</h2>
+        <p>The tools to make smarter financial decisions, one month at a time</p>
+        <div class="features-cards">
+            <div class="features-card-1">
+                <h3>Personalised Budgeting</h3>
+                <p>Create a budget around your income, needs and priorities.</p>
+            </div>
+            <div class="features-card-2">
+                <h3>Expense tracking</h3>
+                <p>Record your spending and see where your money goes.</p>
+            </div>
+            <div class="features-card-3">
+                <h3>Savings goals</h3>
+                <p>Set savings targets and monitor your progress.</p>
+            </div>
+            <div class="features-card-4">
+                <h3>Financial insights</h3>
+                <p>Understand your spending patterns through reports.</p>
+            </div>
+            </div>
+      </section>
+      <hr>
+      <section class="about">
+        <div class="about-label"><span>ABOUT KOLO</span></div>
+        <h2>Financial freedom starts with better habits.</h2>
+        <p>Managing money as a student isn't always easy. Kolo was created to make budgeting simpler, saving more intentional and financial planning accessible to every student. It was made as a final project for the cs50 course and was supposed to address the issue of bad financial habits among students.</p>
+      </section>
+      <br>
+      <br>
+      <hr>
+      <section class="cta">
+        <h2>Ready to take control of your finances?</h2>
+        <p>Start building better financial habits today. Your journey towards smarter money management begins here.</p>
+        <a class="btn-primary" href="{{ url_for('register') }}">Get Started</a>     
+    </section>
+<footer>
+    <hr>
+    <h3 class="footer-logo">KOLO</h3>
+    <p class="motto">Make every kobo count</p>
+    <div>
+    <a href="#" >Home</a>
+    <a href="#">Contact</a>
+    <a href="#">About</a>
+    </div>
+    <p>&#169; 2026 Kolo. All rights reserved.</p>
+</footer>
+{% endblock %}

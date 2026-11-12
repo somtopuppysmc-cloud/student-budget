@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Databases
+*.db
+*.sqlite3
+
+# Secrets
+.env
+.env.*
+
+# Editor settings
+.vscode/
